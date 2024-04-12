@@ -1,0 +1,15 @@
+# Folders
+.vscode/
+.ruby-lsp/
+.git/
+
+# Files
+.rubocop.yml
+.ruby-version
+.tool-versions
+.gitignore
+.env.*
+
+# Ignore Docker specific files
+.dockerignore
+.dockerfile

@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: rack-json-api
+  description: API JSON to handle product list implemented using Rack
+  version: 1.0.0
+servers:
+  - url: http://localhost:9292
+
+paths:
+  /:
+    get:
+      summary: Returns rack-json-api v1.0.0
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+  /products:
+    get:
+      summary: Returns a list of all products in DB
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+    post:
+      summary: Creates a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                  format: float
+      responses:
+        '200':
+          description: Product creation scheduled
+        '401':
+          description: Unauthorized
+
+  /products/{productId}:
+    get:
+      summary: Returns a specific product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+
+  /openapi.yml:
+    get:
+      summary: Returns openapi.yml file
+      responses:
+        '200':
+          description: OK
+
+  /AUTHORS:
+    get:
+      summary: Returns the AUTHORS file
+      responses:
+        '200':
+          description: OK
+
+  /foo:
+    get:
+      summary: Returns a 404 for not implemented routes
+      responses:
+        '404':
+          description: Not found
+        '401':
+          description: Unauthorized

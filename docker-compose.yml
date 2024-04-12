@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  rack-app:
+    container_name: rack-app
+    build: .
+    ports:
+      - "3000:80"

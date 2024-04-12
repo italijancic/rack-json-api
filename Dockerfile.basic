@@ -1,0 +1,17 @@
+FROM ruby:3.3.0
+
+# Set the work directory
+WORKDIR /mvc-rack-app
+
+# Install gems
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+# Copy app files
+COPY . ./
+
+# Expose port 9292 in where app will be running
+EXPOSE 9292
+
+# The command that starts our app
+CMD ["bundle", "exec", "rackup", "-p", "9292", "-o", "0.0.0.0"]
