@@ -8,7 +8,6 @@ require_relative 'config/loader'
 Loader.load(env: ENV['RACK_ENV']&.to_sym || :development)
 
 app = Rack::Builder.new do
-  use Rack::Reloader, 0
   use Rack::ETag
   use Rack::Deflater
   use Rack::ConditionalGet

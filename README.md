@@ -58,7 +58,12 @@ See in the next section the differents `HTTP methods` and actions that have been
 #### [💎...💎] Get all products
 
 ```bash
-curl -u italijancic:test1234 http://127.0.0.1:3000/products
+curl -X GET -u italijancic:test1234 http://127.0.0.1:3000/products
+```
+##### Compresed response
+
+```bash
+curl -X GET --compressed -u italijancic:test1234 http://127.0.0.1:3000/products
 ```
 
 #### {💎} Get one product by id

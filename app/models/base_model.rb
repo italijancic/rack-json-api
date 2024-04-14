@@ -50,9 +50,17 @@ class BaseModel
 
     # Create and save a new instance in the database
     #
-    def create(attributes)
-      new_instance = new(**attributes)
-      new_instance.save
+    def create(attributes = {})
+      new(**attributes).save
+    end
+
+    # Create a new product in a new thread
+    #
+    def create_async(attributes = {}, delay: 5)
+      Thread.new do
+        sleep delay
+        new(**attributes).save
+      end
     end
 
     # Delete an instance in DB

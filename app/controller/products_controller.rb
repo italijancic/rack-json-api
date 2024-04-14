@@ -27,9 +27,8 @@ class ProductsController < BaseController
   #
   def create
     data = JSON.parse(request.body.read)
-    product = Product.new(name: data['name'])
-    product.save
-    json_response({ message: "Product #{data['name']} was created" })
+    Product.create_async({ name: data['name'] }, delay: 5)
+    json_response({ message: "Product #{data['name']} will be created after 5 seg" })
   end
 
   # DELETE /products/:id
