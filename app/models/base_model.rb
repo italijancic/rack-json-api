@@ -22,6 +22,23 @@ class BaseModel
       end
     end
 
+    # Returns first product on DB
+    #
+    def first
+      db.transaction(true) do
+        db[derive_db_id(self.name, 1)]
+      end
+    end
+
+    # Returns first product on DB
+    #
+    def last
+      last_id = next_available_id - 1
+      db.transaction(true) do
+        db[derive_db_id(self.name, last_id)]
+      end
+    end
+
     # Store an instance in DB
     #
     def save(object)
@@ -29,6 +46,13 @@ class BaseModel
       db.transaction do
         db[db_id] = object
       end
+    end
+
+    # Create and save a new instance in the database
+    #
+    def create(attributes)
+      new_instance = new(**attributes)
+      new_instance.save
     end
 
     # Delete an instance in DB

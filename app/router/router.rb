@@ -14,7 +14,6 @@
 # -------
 # PUT   -> Complete update of one resource
 # PATCH -> Partial update of one resource
-
 class Router
   attr_reader :request, :logger
 
@@ -25,9 +24,14 @@ class Router
   def route
     add_route_info_to_request_params
     puts "[Router.route]: Routing to => #{controller_class}##{route_info[:action]}"
-    controller_class.new(request).send(route_info[:action])
-  rescue NameError
-    BaseController.new(request).not_found
+    controller = controller_class
+    if controller
+      controller.new(request).send(route_info[:action])
+    else
+      BaseController.new(request).not_found
+    end
+  rescue StandardError
+    BaseController.new(request)
   end
 
   private

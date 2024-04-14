@@ -13,6 +13,10 @@ class BaseController
     [404, { 'content-type' => 'application/json' }, [{ message: msg }.to_json]]
   end
 
+  def internal_server_error
+    [500, { 'content-type' => 'application/json' }, [{ message: 'Internal Server Error' }.to_json]]
+  end
+
   private
 
   def json_response(body, status: 200)
