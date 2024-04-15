@@ -23,7 +23,6 @@ class Router
 
   def route
     add_route_info_to_request_params
-    puts "[Router.route]: Routing to => #{controller_class}##{route_info[:action]}"
     controller = controller_class
     if controller
       controller.new(request).send(route_info[:action])

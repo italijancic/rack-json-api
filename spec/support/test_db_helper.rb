@@ -3,7 +3,7 @@
 module TestDbHelper
   def seed_test_data
     (1..10).each do |i|
-      product = Product.create(name: "Product-#{i}")
+      Product.create(name: "Product-#{i}")
     end
   end
 

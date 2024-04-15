@@ -134,7 +134,30 @@ Loading development environment (Rack::Console 1.3.1)
 
 # Example CMD to get all dogs in DB
 irb(main):001> Product.all
+=>
+[#<Product:0x00000001251daff8 @id=1, @name="Product-1">,
+ #<Product:0x00000001251dab48 @id=2, @name="Product-2">,
+ #<Product:0x00000001251da990 @id=3, @name="Product-3">,
+ #<Product:0x00000001251da7d8 @id=4, @name="Product-4">,
+ #<Product:0x00000001251da620 @id=5, @name="Product-5">,
+ #<Product:0x00000001251da468 @id=6, @name="Product-6">,
+ #<Product:0x00000001251da2b0 @id=7, @name="Product-7">,
+ #<Product:0x00000001251da0f8 @id=8, @name="Product-8">,
+ #<Product:0x00000001251d9f40 @id=9, @name="Product-9">,
+ #<Product:0x00000001251d9d88 @id=10, @name="Product-10">]
+irb(main):002>
 ```
+
+#### Rake tasks
+To see the list of availables `rake` tasks you can run on app directory:
+
+```bash
+➜ rack-json-api (develop) ✗ bundle exec rake -T
+rake db:delete  # Delete development database data
+rake db:seed    # Seed database for development
+```
+
+You will see a list of two `rake` tasks one to seed development db and other to delete it.
 
 ## 📚 Resources
 

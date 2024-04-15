@@ -66,4 +66,23 @@ describe Application do
       end
     end
   end
+
+  context "when doing a GET '/products/1'" do
+    let(:response) { authenticated_request :delete, '/products/10' }
+
+    context 'when request is authenticated' do
+      it 'returns a 200 status code' do
+        expect(response.status).to eq(200)
+        expect(Product.all.length).to eq(9)
+      end
+    end
+
+    context 'when request is not authenticated' do
+      let(:response) { get '/products/10' }
+
+      it 'returns a 401' do
+        expect(response.status).to eq 401
+      end
+    end
+  end
 end
