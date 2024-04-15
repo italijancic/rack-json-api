@@ -9,6 +9,10 @@ class BaseController
     @request = request
   end
 
+  def index
+    [200, { 'content-type' => 'text/plain' }, ['Rack JSON API v1.0.0']]
+  end
+
   def not_found(msg = 'Resource not found')
     [404, { 'content-type' => 'application/json' }, [{ message: msg }.to_json]]
   end

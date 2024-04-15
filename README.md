@@ -69,13 +69,13 @@ curl -X GET --compressed -u italijancic:test1234 http://127.0.0.1:3000/products
 #### {💎} Get one product by id
 
 ```bash
-curl -u italijancic:test1234 http://127.0.0.1:3000/products/:id
+curl -X GET -u italijancic:test1234 http://127.0.0.1:3000/products/:id
 ```
 
 #### 🆕 Create a new product
 
 ```bash
-curl -X POST -u italijancic:test1234 http://127.0.0.1:3000/products -H "Content-Type: application/json" -d '{"name":"product_name", "price": 10}'
+curl -X POST -u italijancic:test1234 http://127.0.0.1:3000/products -H "Content-Type: application/json" -d '{"name":"product_name"}'
 ```
 
 #### ⌫ Delete a product by id

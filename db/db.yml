@@ -1,1 +1,31 @@
---- {}
+---
+Product_1: !ruby/object:Product
+  id: 1
+  name: Product-1
+Product_2: !ruby/object:Product
+  id: 2
+  name: Product-2
+Product_3: !ruby/object:Product
+  id: 3
+  name: Product-3
+Product_4: !ruby/object:Product
+  id: 4
+  name: Product-4
+Product_5: !ruby/object:Product
+  id: 5
+  name: Product-5
+Product_6: !ruby/object:Product
+  id: 6
+  name: Product-6
+Product_7: !ruby/object:Product
+  id: 7
+  name: Product-7
+Product_8: !ruby/object:Product
+  id: 8
+  name: Product-8
+Product_9: !ruby/object:Product
+  id: 9
+  name: Product-9
+Product_10: !ruby/object:Product
+  id: 10
+  name: Product-10

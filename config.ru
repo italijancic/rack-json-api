@@ -9,7 +9,6 @@ Loader.load(env: ENV['RACK_ENV']&.to_sym || :development)
 
 app = Rack::Builder.new do
   use Rack::ETag
-  use Rack::Deflater
   use Rack::ConditionalGet
   use Rack::Static, {
     root: '.',
@@ -20,6 +19,7 @@ app = Rack::Builder.new do
     ]
   }
   use BasicAuthMiddleware, ENV['BASIC_USER_NM'], ENV['BASIC_PASSWORD']
+  use ConditionalDeflater
   run Application.new
 end
 

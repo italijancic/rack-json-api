@@ -35,9 +35,9 @@ class ProductsController < BaseController
   def delete
     product = Product.find(id)
     if product.nil?
-      json_response({ message: "Product #{id} not found" }, status: 404)
+      not_found
     else
-      Product.delete
+      product.delete
       json_response({ message: "Product #{id} was delete" })
     end
   end

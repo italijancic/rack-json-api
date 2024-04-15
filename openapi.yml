@@ -9,7 +9,7 @@ servers:
 paths:
   /:
     get:
-      summary: Returns rack-json-api v1.0.0
+      summary: Returns Rack JSON API v1.0.0
       responses:
         '200':
           description: OK
@@ -34,18 +34,15 @@ paths:
               properties:
                 name:
                   type: string
-                price:
-                  type: number
-                  format: float
       responses:
         '200':
-          description: Product creation scheduled
+          description: Product <name> will be created after 5 seg
         '401':
           description: Unauthorized
 
   /products/{productId}:
     get:
-      summary: Returns a specific product
+      summary: Returns one specific product
       parameters:
         - name: id
           in: path
@@ -55,6 +52,19 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
+    delete:
+      summary: Delete one specific product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Product <id> was delete
         '401':
           description: Unauthorized
 
