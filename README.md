@@ -113,7 +113,13 @@ docker build -f Dockerfile.basic -t json-rack-app .
 Run app
 
 ```bash
-docker run -p 9292:9292 -e RACK_ENV=development json-rack-app
+docker run -d -p 9292:9292 \
+-e RACK_ENV=development \
+-e BASIC_USER_NM=italijancic \
+-e BASIC_PASSWORD=test1234 \
+-e DB_TYPE=ymlstore \
+-e DB_PATH=../../db/db \
+json-rack-app
 ```
 
 ### 💻 Locally
