@@ -12,6 +12,7 @@ ENV RACK_ENV development
 ENV BASIC_USER_NM italijancic
 ENV BASIC_PASSWORD test1234
 ENV DB_TYPE ymlstore
+ENV DB_PATH ../../db/db
 
 # Use baseimage-docker's init process.
 CMD ["/sbin/my_init"]

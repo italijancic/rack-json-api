@@ -3,12 +3,11 @@
 module TestDbHelper
   def seed_test_data
     (1..10).each do |i|
-      dog = Dog.new(name: "Dog-#{i}")
-      dog.save
+      Product.create(name: "Product-#{i}")
     end
   end
 
   def reset_test_db
-    Dog.all.each(&:delete)
+    Product.all.each(&:delete)
   end
 end

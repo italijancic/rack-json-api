@@ -3,9 +3,8 @@
 class Product < BaseModel
   attr_accessor :id, :name
 
-  def initialize(id: nil, name: nil, price: nil)
+  def initialize(id: nil, name: nil)
     @id = id
     @name = name
-    @price = price
   end
 end

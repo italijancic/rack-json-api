@@ -22,12 +22,44 @@ class BaseModel
       end
     end
 
+    # Returns first product on DB
+    #
+    def first
+      db.transaction(true) do
+        db[derive_db_id(self.name, 1)]
+      end
+    end
+
+    # Returns first product on DB
+    #
+    def last
+      last_id = next_available_id - 1
+      db.transaction(true) do
+        db[derive_db_id(self.name, last_id)]
+      end
+    end
+
     # Store an instance in DB
     #
     def save(object)
       db_id = derive_db_id(object.class.name, object.id)
       db.transaction do
         db[db_id] = object
+      end
+    end
+
+    # Create and save a new instance in the database
+    #
+    def create(attributes = {})
+      new(**attributes).save
+    end
+
+    # Create a new product in a new thread
+    #
+    def create_async(attributes = {}, delay: 5)
+      Thread.new do
+        sleep delay
+        new(**attributes).save
       end
     end
 

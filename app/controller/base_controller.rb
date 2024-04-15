@@ -9,8 +9,16 @@ class BaseController
     @request = request
   end
 
+  def index
+    [200, { 'content-type' => 'text/plain' }, ['Rack JSON API v1.0.0']]
+  end
+
   def not_found(msg = 'Resource not found')
     [404, { 'content-type' => 'application/json' }, [{ message: msg }.to_json]]
+  end
+
+  def internal_server_error
+    [500, { 'content-type' => 'application/json' }, [{ message: 'Internal Server Error' }.to_json]]
   end
 
   private
