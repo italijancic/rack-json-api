@@ -67,7 +67,7 @@ describe Application do
     end
   end
 
-  context "when doing a GET '/products/1'" do
+  context "when doing a DELETE '/products/1'" do
     let(:response) { authenticated_request :delete, '/products/10' }
 
     context 'when request is authenticated' do
