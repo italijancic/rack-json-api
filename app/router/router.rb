@@ -30,7 +30,7 @@ class Router
       BaseController.new(request).not_found
     end
   rescue StandardError
-    BaseController.new(request)
+    BaseController.new(request).internal_server_error
   end
 
   private
