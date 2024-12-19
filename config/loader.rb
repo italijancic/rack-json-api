@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require 'debug'
 require 'dotenv'
+require 'logger'
+require 'rack'
+require 'rack/contrib'
 require 'zeitwerk'
 
 class Loader
