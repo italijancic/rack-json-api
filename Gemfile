@@ -6,9 +6,9 @@ gem 'base64', '~> 0.2.0'
 gem "dotenv", "~> 3.1"
 gem "puma", "~> 6.4"
 gem "rack", "~> 2.2"
-gem 'rake', '~> 13.2', '>= 13.2.1'
 gem "rack-console", "~> 1.3"
 gem "rack-contrib", "~> 2.4"
+gem 'rake', '~> 13.2', '>= 13.2.1'
 gem "zeitwerk", "~> 2.6"
 
 group :development do

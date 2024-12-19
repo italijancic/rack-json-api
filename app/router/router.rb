@@ -14,11 +14,13 @@
 # -------
 # PUT   -> Complete update of one resource
 # PATCH -> Partial update of one resource
+
 class Router
   attr_reader :request, :logger
 
-  def initialize(request)
+  def initialize(request, logger = Logger.new(STDOUT))
     @request = request
+    @logger = logger
   end
 
   def route
@@ -29,8 +31,9 @@ class Router
     else
       BaseController.new(request).not_found
     end
-  rescue StandardError
-    BaseController.new(request)
+  rescue StandardError => e
+    @logger.error("Routing error: #{e.message}")
+    BaseController.new(request).internal_server_error
   end
 
   private
@@ -48,33 +51,35 @@ class Router
   end
 
   def find_id_and_action(fragment)
-    case fragment
-    when 'new'
-      [http_method, nil, :new]
-    when nil
-      action = request.get? ? :index : :create
-      [http_method, nil, action]
-    else
-      action = request.get? ? :show : :delete
-      [http_method, fragment, action]
-    end
+    action = if fragment == 'new'
+               :new
+             elsif fragment.nil?
+               request.get? ? :index : :create
+             else
+               action_for_http_method
+             end
+    [http_method, fragment, action]
+  end
+
+  def action_for_http_method
+    {
+      get: :show,
+      delete: :delete,
+      put: :update,
+      patch: :partial_update
+    }.fetch(http_method, :unknown)
   end
 
   def path_fragments
-    @path_fragments ||= request.path.split('/').reject(&:empty?)
+    @path_fragments ||= request.path_info.split('/').reject(&:empty?)
   end
 
   def http_method
-    request.request_method
-  end
-
-  # Get the proper controller
-  def controller_name
-    "#{route_info[:resource].capitalize}Controller"
+    request.request_method.downcase.to_sym
   end
 
   def controller_class
-    Object.const_get(controller_name)
+    Object.const_get("#{route_info[:resource].capitalize}Controller")
   rescue NameError
     nil
   end
